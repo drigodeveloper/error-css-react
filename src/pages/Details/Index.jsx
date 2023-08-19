@@ -3,6 +3,7 @@ import { Header } from "../../components/header"
 import { Button } from "../../components/button"
 import { Section } from "../../components/section"
 import { Tags } from "../../components/tags"
+import { ButtonText } from "../../components/ButtonText"
 
 export function Details() { 
   
@@ -26,6 +27,9 @@ export function Details() {
   
   
       <Button title="Voltar" />
+
+      <ButtonText title="Excluir a nota" />
+
       
 
     </Container>
