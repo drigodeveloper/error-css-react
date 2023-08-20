@@ -11,14 +11,19 @@ export function Home() {
             </Brand>
 
             <Menu>
-                <ButtonText title="Todos"/>
+                <ButtonText title="Todos" $isactive/>
                 <ButtonText title="Frontend"/>
                 <ButtonText title="Node"/>
                 <ButtonText title="React"/>
             </Menu>
+
             <Search></Search>
+
             <Content></Content>
-            <NewNote></NewNote>
+
+            <NewNote>
+            <ButtonText title="Criar nota"/>
+            </NewNote>
         </Container>
     )
 }

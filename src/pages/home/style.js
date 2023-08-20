@@ -39,7 +39,6 @@ export const Brand = styled.div `
 export const Menu = styled.ul `
     grid-area: Menu;
     background-color: ${({theme}) => theme.COLORS.BACKGROUND_900};
-
     padding: 64px;
     display: flex;
     flex-direction: column;
@@ -60,6 +59,7 @@ export const NewNote= styled.button `
     grid-area: NewNote;
     background-color: ${({theme}) => theme.COLORS.ORANGE};
     border: none;
+    color: ${({theme}) => theme.COLORS.BACKGROUND_900};
 
     
     
