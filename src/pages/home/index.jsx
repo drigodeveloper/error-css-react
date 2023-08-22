@@ -6,6 +6,7 @@ import { Input } from "../../components/Input"
 import { Section } from "../../components/section"
 import { Note } from "../../components/Note"
 
+
 export function Home() {
     return(
         <Container>
@@ -30,13 +31,15 @@ export function Home() {
                 <Note data={{ 
                     title: "React Modal",
                     Tags: [
-                        {id: "1", name: "React" },
-                        {id: "2", name: "nodejs" }
+                        { id: "1", name: "React" },
+                        { id: "2", name: "nodejs" }
 
                     
                 ]
                     
-                    }}/>
+                    }}
+                    />
+                    
                 </Section>
             </Content>
 
