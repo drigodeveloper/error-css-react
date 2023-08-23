@@ -30,23 +30,25 @@ export function Home() {
                 <Section title="Minhas notas">
                 <Note data={{ 
                     title: "React Modal",
-                    Tags: [
-                        { id: "1", name: "React" },
-                        { id: "2", name: "nodejs" }
+                    tags: [
+                        { id: "1", name: 'React' },
+                        { id: "2", name: 'nodejs' },
+                        { id: "3", name: 'JavaScript' }
+                    ]
+                        
+                        }}
+                        />
+                        
+                        
+                    </Section>
+                </Content>
+    
+                <NewNote>
+                    <FiPlus />
+                    Criar nota
+                </NewNote>
+            </Container>
+        )
+    }
 
                     
-                ]
-                    
-                    }}
-                    />
-                    
-                </Section>
-            </Content>
-
-            <NewNote>
-                <FiPlus />
-                Criar nota
-            </NewNote>
-        </Container>
-    )
-}
