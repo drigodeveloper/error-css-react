@@ -1,4 +1,4 @@
-import { Container, Form } from "./style";
+import { Container, Form, Background } from "./style";
 import { Input } from "../../components/Input"
 import { Button } from "../../components/button"
 
@@ -23,6 +23,8 @@ export function Signin() {
 
         <a href="">Criar conta</a>
        </Form>
+
+       <Background />
     </Container>
     )
 }
