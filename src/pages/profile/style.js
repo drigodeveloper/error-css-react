@@ -22,3 +22,59 @@ export const Container = styled.div`
 
     }
 `;
+
+export const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+
+    max-width: 340px;
+
+    margin: -92px auto 0;
+
+    > div:nth-child(4) {
+        margin-top: 24px;
+    }
+`;
+
+export const Avatar = styled.div`
+
+    position: relative;
+    margin: 0 auto 32px;
+    justify-content: center;
+    
+    > img { 
+        width: 186px;
+        height: 186px;
+        border-radius: 50%;
+    }
+
+    > label {
+        width: 48px;
+        height: 48px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: ${({theme}) => theme.COLORS.ORANGE};
+        border-radius: 50%;
+
+        position: absolute;
+        bottom: 7px;
+        right: 7px;
+
+        cursor: pointer;
+
+        input {
+            display: none;
+        }
+        
+        svg {
+            width: 20px;
+            height: 20px;
+            color: ${({theme}) => theme.COLORS.BACKGROUND_800};
+        }
+    }
+
+
+`;
