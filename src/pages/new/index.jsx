@@ -1,6 +1,7 @@
 import { Container,Form } from "./style"; 
 import { Header } from "../../components/header"
 import { Input } from "../../components/Input"
+import { TextArea } from "../../components/textArea"
 
 export function New() {
     return(
@@ -15,9 +16,9 @@ export function New() {
                         <a href="">Voltar</a>
                     </header>
 
-                    <Input />
+                    <Input placeholder="Título" />
                     
-
+                    <TextArea placeholder="Observações" />
                     <h2>Links úteis</h2>
 
                     
