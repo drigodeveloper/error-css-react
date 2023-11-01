@@ -42,12 +42,18 @@ export function New() {
     }
 
     async function handleNewNote() {
+        if(newTags) {
+            alert("Você deixou uma tag no campo para adicionar mas não clicou em adicionar")
+        }
+        if(newlink) {
+            alert("Você deixou um link no campo para adicionar mas não clicou em adicionar")
+        }
         await api.post("/notes", {
             title,
             description,
             tags,
             links
-        })
+        });
         
         alert("Nota criada com sucesso")
         navigate("/")

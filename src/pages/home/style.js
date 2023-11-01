@@ -45,6 +45,10 @@ export const Menu = styled.ul `
     display: flex;
     flex-direction: column;
     gap: 24px;
+
+    > li {
+        list-style: none;
+    }
     
 `;
 export const Search = styled.div `
