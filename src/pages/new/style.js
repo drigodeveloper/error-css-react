@@ -35,13 +35,13 @@ export const Form = styled.div `
         justify-content: space-between;
         margin-bottom: 36px;
 
+        
+        button {
+            font-size: 20px;
+            color: ${({theme}) => theme.COLORS.GRAY_100};
+        }
+        
     }
-
-     a {
-        font-size: 20px;
-        color: ${({theme}) => theme.COLORS.GRAY_100};
-    }
-
     
 
 `;

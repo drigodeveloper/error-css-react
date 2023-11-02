@@ -1,51 +1,100 @@
 import { Container, Links, Content } from "./style"
 import { Header } from "../../components/header"
 import { Button } from "../../components/button"
+import { useState, useEffect } from "react"
+import { api } from "../../services/api"
+import { useParams, useNavigate } from "react-router-dom"
 import { Section } from "../../components/section"
 import { Tags } from "../../components/tags"
 import { ButtonText } from "../../components/ButtonText"
 
 
-export function Details() { 
+export function Details() {
+  const params = useParams();
+  const navigate = useNavigate();
+
+  const [data, setData] = useState(null); 
+
+  function handleBack() {
+    navigate(-1)
+  }
+
+  async function handleRemove() {
+    const confirm = window.confirm("Deseja realmente remover a nota?")
+
+    if(confirm) {
+      await api.delete(`/notes/${params.id}`)
+      navigate(-1)
+    }
+  }
+
+
   
+  useEffect(() => {
+
+  async function fetchNotes() {
+    const response = await api.get(`/notes/${params.id}`)
+    setData(response.data)
+  }
+  fetchNotes();
+  }, [])
   return(
     <Container>
       <Header />
 
-      <main>
-        <Content>
+           { 
+           data &&
+           <main>
+              <Content>
 
-          <h1>Introdução ao React</h1>
-          <p>React é uma biblioteca de JavaScript de código aberto e eficiente para a criação de interfaces de 
-            usuário. Desenvolvido pelo Facebook, o React permite criar componentes reutilizáveis que podem ser 
-            combinados para formar interfaces de usuário complexas.Uma das principais características do React é 
-            sua abordagem de renderização virtual. Em vez de atualizar a interface de usuário inteira quando 
-            ocorre uma alteração, o React atualiza apenas os componentes que foram afetados. Isso resulta em um 
-            desempenho excelente e uma experiência de usuário fluida.
-          </p>
+                <h1>{data.title}</h1>
+                <p>{data.description}</p>
 
 
-      <Section title="Links úteis">
-        <Links>
-          <li>
-            <a href="https://github.com/drigodeveloper">Link 1</a>
-            <a href="https://www.linkedin.com/in/rodrigocamposm/">Link 2</a>
-          </li>
-        </Links>
-      </Section>
+          {
+            data.links &&
+            <Section title="Links úteis">
+              <Links>
+              {
+                data.links.map(link => (
+                <li key={String(link.id)}>
+                  <a href={link.url} target="_blank">
+                    {link.url}
+                  </a>
+                  </li>
+                ))
+                  
+                    
+              }
+              </Links>
+            </Section>
+          }     
 
-      <Section title="Marcadores">
-        <Tags title="express" />
-        <Tags title="Node" />
-      </Section>
-  
-  
-      <Button title="Voltar" />
+                
+                  
+          {
+             data.tags && 
+            <Section title="Marcadores">
+              {
+                data.tags.map(tag => (
+                  <Tags 
+                  key={String(tag.id)}
+                  title={tag.name} 
+                  />
 
-      <ButtonText title="Excluir a nota" />
+                  ))
+              }
+            </Section>
+          }
+        
+        
+            <Button title="Voltar" onClick={handleBack}/>
 
-        </Content>
-      </main>
+            <ButtonText title="Excluir a nota" onClick={handleRemove} />
+
+              </Content>
+            </main>
+            }
       
 
     </Container>

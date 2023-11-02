@@ -21,6 +21,11 @@ export const Container = styled.div`
         color: ${({theme}) => theme.COLORS.GRAY_100};
 
     }
+
+    > button {
+        background: none;
+        border: none;
+    }
 `;
 
 export const Form = styled.form`

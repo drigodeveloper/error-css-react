@@ -6,10 +6,11 @@ import { FiArrowLeft } from "react-icons/fi"
 import { FiUser, FiMail, FiLock, FiCamera } from "react-icons/fi"
 import { Input } from "../../components/Input"
 import { Button } from "../../components/button"
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import AvatarPlaceHolder from "../../assets/avatar_placeholder.svg" 
 
 export function Profile({icon: Icon}) {
+    const navigate = useNavigate();
 
     const { user, updateProfile } = useAuth();
 
@@ -23,13 +24,15 @@ export function Profile({icon: Icon}) {
     const [avatarFile, setAvatarFile] = useState(null);
 
     async function handleUpdate() {
-        const user = {
+        const updated = {
             name,
             email,
             password: newPassword,
             old_password: oldPassword
         }
-        await updateProfile({ user, avatarFile })
+
+        const userUpdated = Object.assign(user, updated);
+        await updateProfile({ user: userUpdated, avatarFile })
     }
 
     async function handleChangeAvatar(event) {
@@ -43,16 +46,22 @@ export function Profile({icon: Icon}) {
 
     }
 
+    function handleBack() {
+        navigate(-1)
+      }
+
     
 
 
     return (
         <Container>
             <header>
-                <Link to="/">
-                    <FiArrowLeft />
-                </Link>
+                    <button type="button" onClick={handleBack}>
+                        <FiArrowLeft />
+                    </button>
             </header>
+
+                
 
             <Form action="">
                 <Avatar >
