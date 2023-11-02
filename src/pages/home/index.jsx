@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import { api } from "../../services/api"
 import { Container, Brand, Menu, Search, Content, NewNote } from "./style"
 import { Header } from "../../components/header"
@@ -14,6 +15,12 @@ export function Home() {
     const [ tagsSelected, setTagsSelected] = useState([]);
     const [ search, setSearch] = useState("");
     const [ notes, setNotes] = useState([]);
+
+    const navigate = useNavigate();
+
+    function handleDetails(id) { 
+        navigate(`/details/${id}`)
+    }
 
     function handleTagSelected(tagName) {
 
@@ -95,6 +102,7 @@ export function Home() {
                         <Note 
                         key={String(note.id)}
                         data={note}
+                        onClick={() => handleDetails(note.id)}
                         />
                     ))
                         
