@@ -16,7 +16,20 @@ export function Home() {
     const [ notes, setNotes] = useState([]);
 
     function handleTagSelected(tagName) {
-        setTagsSelected([tagName])
+
+        if(tagName === "all") {
+            return setTagsSelected([]);
+        }
+        const alreadySelected = tagsSelected.includes(tagName)
+
+        if(alreadySelected) {
+            const filteredTags = tagsSelected.filter(tag => tag !== tagName)
+            setTagsSelected(filteredTags)
+        }else{
+            setTagsSelected(prevState => [...prevState, tagName])
+        }
+
+
     }
 
     useEffect(() => {
@@ -31,12 +44,12 @@ export function Home() {
 
     useEffect(() => {
         async function fetchNotes() {
-            const response = await api.get(`/notes?title=${search}`);
+            const response = await api.get(`/notes?title=${search}&tags=${tagsSelected}`);
             setNotes(response.data)
         }
 
         fetchNotes();
-    }, [search])
+    }, [tagsSelected, search])
     return(
         <Container>
             <Header />
@@ -54,11 +67,11 @@ export function Home() {
 
                 {
                     tags && tags.map(tag => (
-                    <li>
+                    <li key={String(tag.id)} >
+                        
                         <ButtonText
-                        key={String(tag.id)} 
                         title={tag.name}
-                        onClick={() => setTagsSelected(tag.name)}
+                        onClick={() => handleTagSelected(tag.name)}
                         $isActive={tagsSelected.includes(tag.name)}
                         />
                         </li>
@@ -70,7 +83,7 @@ export function Home() {
                 <Input 
                 placeholder="Pesquisar pelo título" 
                 icon={FiSearch}
-                onChange={() => setSearch(e.target.value)}
+                onChange={(e) => setSearch(e.target.value)}
                 />
             </Search>
 
